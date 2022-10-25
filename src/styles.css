@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.app{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+.form-group {
+  max-width: 444px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  display: block;
+}
+.form-items-base {
+	margin-top: 64px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.form-item {
+	display: inline-flex;
+	flex-direction: column;
+	position: relative;
+	min-width: 0;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	vertical-align: top;
+	width: 100%;
+}

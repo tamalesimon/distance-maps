@@ -13,5 +13,35 @@ export class ServiceService {
     return this.http.post('login', {username, password});
   }
 
+  // getCurrentLocation() {
+  //   return new Promise<any>((resolve, reject) => {
+  //     if(navigator.geolocation) {
+  //       navigator.geolocation.getCurrentPosition(position => {
+  //         if(position){
+  //           console.log(
+  //             'Latitude: ' +
+  //               position.coords.latitude +
+  //               'Longitude: ' +
+  //               position.coords.longitude
+  //           );
+  //           let lat = position.coords.latitude;
+  //           let long = position.coords.longitude;
+
+  //           const currentLocation = {
+  //             lat,
+  //             long
+  //           }
+  //           resolve(currentLocation);
+  //         }
+  //       }, error => {
+  //         console.error(error);
+  //       })
+  //     } else {
+  //       reject('Geolocation is not supported by this browser');
+  //     }
+  //   })
+  // }
+
+
 }
 

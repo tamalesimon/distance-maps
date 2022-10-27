@@ -35,3 +35,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 	vertical-align: top;
 	width: 100%;
 }
+.map-box{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+agm-map {
+  height: 100vh;
+}

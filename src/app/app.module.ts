@@ -27,7 +27,7 @@ import { AgmCoreModule } from '@agm/core';
   imports: [
     BrowserModule,
     AgmCoreModule.forRoot({
-      apiKey:'AIzaSyB_QzWnVLBQsDC1I46fX_6dcqlwgLSXJU4'
+      apiKey:''
     }),
     AppRoutingModule,
     NgbModule,

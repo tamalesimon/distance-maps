@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../services/auth-service.service';
-
-import { ServiceService } from '../services/service.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   form = new FormGroup({
     username: new FormControl<any>(null, Validators.required),
@@ -18,9 +16,6 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(private authServiceService: AuthServiceService, private router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   submitForm() {
     console.log("testing function")

@@ -1,0 +1,42 @@
+[
+{
+  "id":1,
+"origin": {
+  "name":"Church House, 8H7H+9Q9, Kampala",
+  "latitude":"0.3134947742884475",
+  "longitude":"32.57942771740142"
+},
+"destination": {
+  "name":"Bethany Women's and Family Hospital, 16 Kabalega Close, Kampala",
+  "latitude":"0.303281070519427",
+  "longitude":"32.65126800094927"
+}
+},
+{
+  "id":2,
+  "origin": {
+    "name":"Church House, 8H7H+9Q9, Kampala",
+    "latitude":"0.3134947742884475",
+    "longitude":"32.57942771740142"
+  },
+  "destination": {
+    "name":"Bethany Women's and Family Hospital, 16 Kabalega Close, Kampala",
+    "latitude":"0.303281070519427",
+    "longitude":"32.65126800094927"
+  }
+},
+{
+  "id":3,
+  "origin": {
+    "name":"Kungu Trading Center, Kungu Road, Kampala",
+    "latitude":"0.39667859757188273",
+    "longitude":"32.61365499648913"
+  },
+  "destination": {
+    "name":"The Harp Hamilton Park, Unnamed Road, Kampala",
+    "latitude":"0.4008841993580171",
+    "longitude":"32.65202131279247"
+  }
+}
+
+]

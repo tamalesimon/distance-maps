@@ -1,0 +1,21 @@
+.show-playlist {
+
+  opacity: 1;
+  width: 350px;
+}
+.hide-playlist {
+  opacity: 1;
+}
+.side-bar{
+  transition:all 0.5s ease;
+}
+.hide{
+  display: none;
+  padding-bottom: 1rem;
+}
+.show{
+  display: flex;
+}
+
+
+

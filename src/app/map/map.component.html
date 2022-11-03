@@ -1,10 +1,13 @@
 <div class="map-box">
-  <!-- <agm-map
-  [latitude]="latitude"
-  [longitude]="longitude"
-  [zoom]="zoom"
-  [disableDefaultUI]="true"
-  >
-  </agm-map> -->
-  <div class=""></div>
+  <div class="" style="background: gray; width: 100vw; height: 100vh; position: absolute; top:0; left:0;">
+    <google-map
+      height="100%"
+      width="100%"
+      [center]="center">
+
+      <map-directions-renderer *ngIf="(this.serviceService.directionsResults$ | async) as directionsResults" [directions]="directionsResults"></map-directions-renderer>
+
+    </google-map>
+  </div>
+  <app-controls></app-controls>
 </div>

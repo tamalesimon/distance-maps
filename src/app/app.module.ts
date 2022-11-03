@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GoogleMapsModule } from '@angular/google-maps';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatInputModule } from '@angular/material/input';
@@ -16,19 +17,18 @@ import { FakeBackendProvider } from './utils/fake-backend';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ServiceService } from './services/service.service';
 import { AuthServiceService } from './services/auth-service.service';
-import { AgmCoreModule } from '@agm/core';
+import { ControlsComponent } from './controls/controls.component';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
-    LoginComponent
+    LoginComponent,
+    ControlsComponent
   ],
   imports: [
     BrowserModule,
-    AgmCoreModule.forRoot({
-      apiKey:''
-    }),
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
@@ -38,6 +38,8 @@ import { AgmCoreModule } from '@agm/core';
     MatCheckboxModule,
     HttpClientModule,
     ReactiveFormsModule,
+    GoogleMapsModule,
+    GooglePlaceModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [FakeBackendProvider, ServiceService, AuthServiceService, {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}],

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { MapDirectionsService } from '@angular/google-maps';
-import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { NgxIndexedDBService  } from 'ngx-indexed-db';
 
 @Injectable({
   providedIn: 'root'
@@ -15,16 +15,56 @@ export class ServiceService {
 
   map!: google.maps.Map;
   markers!: google.maps.Marker[];
-  request: google.maps.DirectionsRequest = {
-    destination: {}, //
-    origin: {}, //
-    travelMode: google.maps.TravelMode.DRIVING
-  }
+
+  originFormattedAddress: any;
+  originGeoLatitude!: number;
+  originGeoLongitude!: number;
+  id: any;
+  destFormattedAddress: any;
+  destGeoLatitude!: number;
+  destGeoLongitude!: number;
+
+  origin: any;
+  destination: any;
+
 
  directionsResults$!: Observable<google.maps.DirectionsResult | undefined>;
 
-  constructor(private http: HttpClient, private mapDirectionsService: MapDirectionsService) {
-
+  constructor(private http: HttpClient, private mapDirectionsService: MapDirectionsService, private dbService: NgxIndexedDBService) {
+    //
+    this.dbService.getByKey('myRoutes', 1).subscribe((myRoutes) => {
+      console.log(myRoutes);
+    });
+  //   this.dbService.bulkAdd('myRoutes',
+  //   [
+  //     {
+  //         "origin": {
+  //             "name": "Church House, 8H7H+9Q9, Kampala",
+  //             "latitude": 0.31349477428844752,
+  //             "longitude": 32.579427717401423
+  //         },
+  //         "destination": {
+  //             "name": "Bethany Women's and Family Hospital, 16 Kabalega Close, Kampala",
+  //             "latitude": 0.303281070519427,
+  //             "longitude": 32.651268000949273
+  //         }
+  //     },
+  //     {
+  //         "origin": {
+  //             "name": "Kungu Trading Center, Kungu Road, Kampala",
+  //             "latitude": 0.39667859757188273,
+  //             "longitude": 32.613654996489132
+  //         },
+  //         "destination": {
+  //             "name": "The Harp Hamilton Park, Unnamed Road, Kampala",
+  //             "latitude": 0.40088419935801711,
+  //             "longitude": 32.652021312792471
+  //         }
+  //     }
+  // ]
+  //   ).subscribe(results => {
+  //     console.log(results);
+  //   })
 
    }
 
@@ -78,8 +118,9 @@ export class ServiceService {
   }
 
   getSavedRoutes() {
-    return this.http.get(this.routesUrl).pipe(
-      map(response => response))
+    return this.dbService.getAll('myRoutes').pipe(
+      map(response => response)
+    )
   }
 
   deleteSavedRoutes(id: any) {
@@ -100,23 +141,43 @@ export class ServiceService {
     )
   }
 
-  calculateMyRoute(request: any) {
-  //   const request: google.maps.DirectionsRequest = {
-  //     destination: {
-  //         lat: 0.31372692218433057,
-  //         lng: 32.57945972606261
-  //     },
-  //     origin: {
-  //         lat: 0.36219329074605283,
-  //         lng: 32.60963286586434
-  //     },
-  //     travelMode: google.maps.TravelMode.DRIVING
-  // };
-  // this.directionsResults$ = this.mapDirectionsService.route(request).pipe(map(response => response.result)
-  // );
 
-  return this.directionsResults$ = this.mapDirectionsService.route(request).pipe(map(response => response.result))
+  getSelected(route:any){
+    return this.http.get(this.routesUrl).pipe(
+      map(() => {
+        console.log(route.destination.latitude)
+        this.destGeoLatitude = route.destination.latitude;
+        this.destGeoLongitude = route.destination.longitude;
+        this.originGeoLatitude = route.origin.latitude;
+        this.originGeoLongitude = route.origin.longitude;
+
+        const request: google.maps.DirectionsRequest = {
+          "destination": {
+            lat:this.destGeoLatitude,
+            lng:this.destGeoLongitude
+          }, //
+          "origin": {
+            lat:this.originGeoLatitude,
+            lng:this.originGeoLongitude
+          }, //
+          travelMode: google.maps.TravelMode.DRIVING
+        }
+          console.log("this is request: ",request)
+        this.calculateMyRoute(request);
+      }
+      )
+    )
   }
 
+  calculateMyRoute(request: any) {
+    this.directionsResults$ = this.mapDirectionsService.route(request).pipe(map(response => response.result))
+    return this.directionsResults$;
+  }
+
+}
+
+export interface destination {
+  lat: number,
+  lng: number
 }
 

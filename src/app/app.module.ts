@@ -19,7 +19,23 @@ import { ServiceService } from './services/service.service';
 import { AuthServiceService } from './services/auth-service.service';
 import { ControlsComponent } from './controls/controls.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
 
+const dbconfig: DBConfig = {
+  name: 'MyRoutesDB',
+  version: 1,
+  objectStoresMeta: [{
+    store: 'myRoutes',
+    storeConfig: {keyPath:'id', autoIncrement: true},
+    storeSchema: [
+      {name: 'origin', keypath:'origin', options: {unique:false}},
+      {name: 'destination', keypath:'destination', options: {unique:false}},
+      {name: 'name', keypath:'name', options: {unique:false}},
+      {name: 'lat', keypath:'lat', options: {unique:false}},
+      {name: 'lng', keypath:'lng', options: {unique:false}},
+    ]
+  }]
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +55,8 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     HttpClientModule,
     ReactiveFormsModule,
     GoogleMapsModule,
-    GooglePlaceModule
+    GooglePlaceModule,
+    NgxIndexedDBModule.forRoot(dbconfig)
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [FakeBackendProvider, ServiceService, AuthServiceService, {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}],

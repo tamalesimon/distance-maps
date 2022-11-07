@@ -54,9 +54,9 @@
         <div class="overflow-auto" style="height:100px" >
           <ul *ngFor="let myRoute of myRoutes" class="list-group list-group-flush">
             <li class="list-group-item list-group-item-action d-flex border-bottom">
-              <div>
+              <div (click)="selectSaveRoute(myRoute)">
                 <span><i class="bi bi-geo"></i></span>
-                <span style="cursor: pointer;"></span>
+                <span style="cursor: pointer;">{{myRoute.destination.name}}</span>
               </div>
               <div class="ms-2 d-flex flex-column">
                 <i style="cursor: pointer;" class="bi bi-pencil-square"></i>

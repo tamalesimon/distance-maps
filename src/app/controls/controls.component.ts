@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MapDirectionsService } from '@angular/google-maps';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
+import { find } from 'rxjs';
 import { ServiceService } from '../services/service.service';
 
 @Component({
@@ -55,6 +56,7 @@ export class ControlsComponent implements OnInit {
  this.serviceService.getSavedRoutes().subscribe({
     next: (myRoutes) => {
       this.myRoutes = myRoutes as any;
+      console.log("my routes", myRoutes)
     }
  })
 
@@ -116,6 +118,7 @@ export class ControlsComponent implements OnInit {
       }, //
       travelMode: google.maps.TravelMode.DRIVING
     }
+    console.log("Request for cal: ", request)
    return this.serviceService.calculateMyRoute(request)
   }
 
@@ -148,7 +151,9 @@ export class ControlsComponent implements OnInit {
 
 
 
-  selectSaveRoute() {}
+  selectSaveRoute(id: any) {
+    this.serviceService.getSelected(id).subscribe()
+  }
 }
 
 export interface IsOpenChangedEvenArgs {

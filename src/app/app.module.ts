@@ -20,6 +20,7 @@ import { AuthServiceService } from './services/auth-service.service';
 import { ControlsComponent } from './controls/controls.component';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
+import { NoAccessComponent } from './no-access/no-access.component';
 
 const dbconfig: DBConfig = {
   name: 'MyRoutesDB',
@@ -41,7 +42,8 @@ const dbconfig: DBConfig = {
     AppComponent,
     MapComponent,
     LoginComponent,
-    ControlsComponent
+    ControlsComponent,
+    NoAccessComponent
   ],
   imports: [
     BrowserModule,
